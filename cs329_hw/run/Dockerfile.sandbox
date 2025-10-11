@@ -1,0 +1,19 @@
+# Dockerfile.sandbox
+FROM python:3.11-slim
+
+# Create an unprivileged user
+RUN useradd -ms /bin/bash runner
+USER runner
+
+# Make a work dir with no special permissions
+WORKDIR /work
+
+# Avoid .pyc, ensure deterministic hashing
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONHASHSEED=0 \
+    PYTHONIOENCODING=UTF-8
+
+# If you need extra stdlib modules, they’re already there.
+# If you need third-party libs for tests (prefer not), pip install them here.
+RUN pip install numpy openai
+CMD ["python", "-I", "-B", "-S"]

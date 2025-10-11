@@ -1,0 +1,11 @@
+datasets
+tqdm
+jupyterlab
+ipykernel
+numpy
+matplotlib
+openai
+litellm
+tenacity
+huggingface_hub
+python-dotenv
